@@ -90,6 +90,20 @@ float dot(const Vec2& u, const Vec2& v) {
 	return u.x * v.x + u.y * v.y;
 }
 
+inline float Clamp(float value, float Min, float Max)
+{
+	if (value < Min) return Min;
+	else if (value > Max) return Max;
+	return value;
+}
+
+template<class T> inline double AngleBWVectors(T v1, T v2)
+{
+	//dot = (dot < -1.0 ? -1.0 : (dot > 1.0 ? 1.0 : dot));
+	double angle = atan2(v1.x * v2.y - v1.y * v2.x, v1.x * v2.x + v1.y * v2.y);
+	return angle;
+}
+
 inline
 float length(const Vec2& v) {
 	return std::sqrt(dot(v, v));
